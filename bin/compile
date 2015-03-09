@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# bin/compile <build-dir> <cache-dir>
+
+set -e
+
+export BUILD_DIR=$1
+
+REV=$(git rev-parse --HEAD)
+echo "=====> Current git revision $REV"
+
+PROFILE_PATH="$BUILD_DIR/.profile.d/git_revision.sh"
+mkdir -p $(dirname $PROFILE_PATH)
+
+echo "export GIT_REV=\"$REV\"" >> $PROFILE_PATH
